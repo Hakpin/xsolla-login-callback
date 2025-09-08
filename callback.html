@@ -1,0 +1,21 @@
+<!-- callback.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Callback</title>
+    <script>
+      // When redirected from Xsolla, the URL contains a code or token
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('access_token'); // or 'code' depending on your flow
+
+      // Send the token to the main PlayCanvas window
+      if (window.opener) {
+        window.opener.postMessage({ xsollaToken: token }, '*');
+        window.close(); // Close popup
+      }
+    </script>
+  </head>
+  <body>
+    Logging in...
+  </body>
+</html>
