@@ -1,25 +1,20 @@
-<!-- callback.html -->
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Login Callback</title>
-    <script src="https://cdn.xsolla.com/sdk/login/1.0.0/xsolla-login.min.js"></script>
-    <script>
-      // When redirected from Xsolla, the URL contains a code or token
-      const params = new URLSearchParams(window.location.search);
-      const token = params.get('access_token') || params.get('code'); // check both
-
-      // Send the token to the main PlayCanvas window
-      if (window.opener) {
-        window.opener.postMessage({ xsollaToken: token }, '*');
-        window.close(); // Close popup
-      }
-    </script>
-  </head>
-  <body>
+</head>
+<body>
     Logging in...
-  </body>
+    <script>
+        // Get the token from URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('access_token') || params.get('code'); // Check both
 
+        // Send token back to the PlayCanvas game
+        if (window.opener) {
+            window.opener.postMessage({ xsollaToken: token }, '*');
+            window.close(); // Close popup
+        }
+    </script>
+</body>
 </html>
-
-
