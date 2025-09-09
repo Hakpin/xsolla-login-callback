@@ -7,7 +7,7 @@
     <script>
       // When redirected from Xsolla, the URL contains a code or token
       const params = new URLSearchParams(window.location.search);
-      const token = params.get('access_token'); // or 'code' depending on your flow
+      const token = params.get('access_token') || params.get('code'); // check both
 
       // Send the token to the main PlayCanvas window
       if (window.opener) {
@@ -21,4 +21,5 @@
   </body>
 
 </html>
+
 
